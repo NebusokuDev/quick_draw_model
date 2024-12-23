@@ -1,5 +1,5 @@
-from lightning.pytorch import LightningModule
-from lightning.pytorch.utilities.types import STEP_OUTPUT
+from pytorch_lightning import LightningModule
+from pytorch_lightning.utilities.types import STEP_OUTPUT
 from torch import Tensor
 from torch.nn import Module
 from torch.optim import Optimizer, Adam
