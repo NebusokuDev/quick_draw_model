@@ -4,7 +4,7 @@ from lightning.pytorch.utilities.types import TRAIN_DATALOADERS, EVAL_DATALOADER
 from torch.utils.data import DataLoader, random_split
 from torchvision.datasets import ImageFolder
 from torchvision.transforms import Compose, ToTensor, Normalize
-from downloader import Downloader
+from quick_draw_model.downloader import Downloader
 
 
 class HowDoHumansSketchObjects(LightningDataModule):
