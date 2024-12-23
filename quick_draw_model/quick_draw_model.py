@@ -19,7 +19,7 @@ class QuikDrawModel(LightningModule):
         return self.model(x)
 
     def configure_optimizer(self) -> Optimizer:
-        return Adam(self.model.parameters(), self.lr)
+        return Adam(self.parameters(), self.lr)
 
     def training_step(self, batch: tuple[Tensor, Tensor], batch_idx: int) -> STEP_OUTPUT:
         image, label = batch
