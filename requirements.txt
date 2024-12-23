@@ -1,0 +1,8 @@
+setuptools~=75.6.0
+torchvision~=0.20.1+cpu
+requests~=2.32.3
+tqdm~=4.67.1
+lightning~=2.5.0.post0
+torch~=2.5.1+cpu
+torchmetrics~=1.6.0
+torchinfo~=1.8.0

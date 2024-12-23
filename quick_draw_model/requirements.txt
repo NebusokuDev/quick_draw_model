@@ -1,0 +1,6 @@
+lightning~=2.5.0.post0
+tqdm~=4.67.1
+torch~=2.5.1+cpu
+torchvision~=0.20.1+cpu
+torchmetrics~=1.6.0
+requests~=2.32.3
