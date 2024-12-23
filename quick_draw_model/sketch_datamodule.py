@@ -10,7 +10,7 @@ from quick_draw_model.downloader import Downloader
 class HowDoHumansSketchObjects(LightningDataModule):
     URL = "https://cybertron.cg.tu-berlin.de/eitz/projects/classifysketch/sketches_png.zip"
 
-    def __init__(self, root="./data", batch_size=32, num_workers=4, transforms=None):
+    def __init__(self, root="./data", batch_size=32, num_workers=8, transforms=None):
         super().__init__()
         self.root = root
         self.batch_size = batch_size
