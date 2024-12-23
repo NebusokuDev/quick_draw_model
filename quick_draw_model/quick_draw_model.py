@@ -1,4 +1,4 @@
-from lightning import LightningModule
+from lightning.pytorch import LightningModule
 from lightning.pytorch.utilities.types import STEP_OUTPUT
 from torch import Tensor
 from torch.nn import Module
@@ -18,7 +18,7 @@ class QuikDrawModel(LightningModule):
     def forward(self, x) -> Tensor:
         return self.model(x)
 
-    def configure_optimizer(self) -> Optimizer:
+    def configure_optimizers(self) -> Optimizer:
         return Adam(self.parameters(), lr=self.lr)
 
     def training_step(self, batch: tuple[Tensor, Tensor], batch_idx: int) -> STEP_OUTPUT:
@@ -30,7 +30,7 @@ class QuikDrawModel(LightningModule):
         self.metrics(predict, label)
 
         self.log("train_loss", loss)
-        self.log("test_acc", self.metrics, on_step=True, on_epoch=True, prog_bar=True)
+        self.log("train_acc", self.metrics.compute(), on_step=True, on_epoch=True, prog_bar=True)
 
         return loss
 
@@ -40,10 +40,10 @@ class QuikDrawModel(LightningModule):
         predict = self.forward(image)
         loss = self.criterion(predict, label)
 
-        self.log("train_loss", loss)
-        self.log("val_acc", self.metrics, on_step=True, on_epoch=True)
-
         self.metrics(predict, label)
+
+        self.log("val_loss", loss)
+        self.log("val_acc", self.metrics.compute(), on_step=True, on_epoch=True)
 
         return loss
 
@@ -53,9 +53,9 @@ class QuikDrawModel(LightningModule):
         predict = self.forward(image)
         loss = self.criterion(predict, label)
 
-        self.log("train_loss", loss)
-        self.log("train_acc", self.metrics, on_step=True, on_epoch=True)
-
         self.metrics(predict, label)
+
+        self.log("test_loss", loss)
+        self.log("test_acc", self.metrics.compute(), on_step=True, on_epoch=True)
 
         return loss
